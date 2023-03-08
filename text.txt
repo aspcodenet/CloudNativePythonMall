@@ -1,5 +1,5 @@
 python -m venv env
 STARTA OM TERMINAL = (env)
-pip install flask_sqlalchemy
-pip install flask_migrate
-pip freeze > requirements.txt
+python -m pip install flask_sqlalchemy
+python -m pip install flask_migrate
+python -m pip freeze > requirements.txt
