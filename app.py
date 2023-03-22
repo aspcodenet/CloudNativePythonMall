@@ -35,10 +35,10 @@ def contactpage():
     s = s + "</body></html>"
     return s
 
-if __name__  == "__main__":
-    with app.app_context():
-        db.create_all()
-        #upgrade()
-    
-        seedData(db)
-        app.run()
+#if __name__  == "__main__":
+with app.app_context():
+    db.create_all()
+    #upgrade()
+
+    seedData(db)
+    app.run()
