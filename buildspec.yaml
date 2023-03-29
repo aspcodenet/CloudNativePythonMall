@@ -22,7 +22,8 @@ phases:
   build:
     commands:
       - docker build -t systementor/testimage .
+      - docker save -o testimage.tar systementor/testimage
 artifacts:
   files:
-    - 'testimage'
+    - 'testimage.tar'
   name: testimage_${GOOS}_${GOARCH}_$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
