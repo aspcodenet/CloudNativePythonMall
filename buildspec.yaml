@@ -1,0 +1,29 @@
+version: 0.2
+
+# env:
+#   shell: shell-tag
+#   variables:
+#     key: "value"
+#     key: "value"
+#   parameter-store:
+#     key: "value"
+#     key: "value"
+#   exported-variables:
+#     - variable
+#     - variable
+#   secrets-manager:
+#     key: secret-id:json-key:version-stage:version-id
+#   git-credential-helper: no | yes
+
+        
+phases:
+  install:
+    commands:
+  build:
+    commands:
+      - docker build -t systementor/testimage .
+      - docker save -o testimage.tar systementor/testimage
+artifacts:
+  files:
+    - 'testimage.tar'
+  name: testimage_${GOOS}_${GOARCH}_$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
