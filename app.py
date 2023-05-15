@@ -19,7 +19,41 @@ db.init_app(app)
 migrate = Migrate(app,db)
 
 
-@app.route("/api/customers")
+@app.route("/api/customer/<id>", methods=["PUT"])
+def apiCustomerUpdate(id):
+    data = request.get_json()
+    c = Customer.query.filter_by(Id=id).first_or_404()
+    c.City = data["City"]
+    c.Name = data["Name"]
+    c.Telephone = data["Telephone"]
+    c.TelephoneCountryCode = data["TelephoneCountryCode"]
+    db.session.commit()
+    return jsonify({ "Id": c.Id, 
+                 "Name":c.Name, 
+                 "City":c.City,
+                  "TelephoneCountryCode":c.TelephoneCountryCode,
+                   "Telephone":c.Telephone }), 201
+
+
+
+@app.route("/api/customer", methods=["POST"])
+def apiCustomerCreate():
+    data = request.get_json()
+    c = Customer()
+    c.City = data["City"]
+    c.Name = data["Name"]
+    c.Telephone = data["Telephone"]
+    c.TelephoneCountryCode = data["TelephoneCountryCode"]
+    db.session.add(c)
+    db.session.commit()
+    return jsonify({ "Id": c.Id, 
+                 "Name":c.Name, 
+                 "City":c.City,
+                  "TelephoneCountryCode":c.TelephoneCountryCode,
+                   "Telephone":c.Telephone }), 201
+
+
+@app.route("/api/customer")
 def apiCustomers():
     lista = []
     for c in Customer.query.all():
@@ -29,6 +63,17 @@ def apiCustomers():
         lista.append(cdict)
  
     return jsonify(lista)
+
+
+@app.route("/api/customer/<id>")
+def apiCustomer(id):
+    c = Customer.query.filter_by(Id=id).first_or_404()
+    return jsonify({ "Id": c.Id, 
+                 "Name":c.Name, 
+                 "City":c.City,
+                  "TelephoneCountryCode":c.TelephoneCountryCode,
+                   "Telephone":c.Telephone })
+
 
 @app.route("/customers")
 def contactpage():
