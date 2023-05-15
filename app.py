@@ -5,6 +5,14 @@ from random import randint
 from appconfig.config import DevelopmentConfig, ProductionConfig
 from model import db, seedData, Customer
 import os
+    # - docker build -t git.systementor.se/yacloud/yagolangapi .
+    #   - docker login -u yacloud -p yacloud1 https://git.systementor.se
+    #   - docker push git.systementor.se/yacloud/yagolangapi 
+# köra den i vårt linoide kluster
+# bygga docker image -> git.systementor.se
+# skapa en databas
+# sätta upp subdomain
+# mappa -> ingress -> service -> deployments
 
 app = Flask(__name__)
 
