@@ -1,14 +1,7 @@
-FROM python:alpine
+FROM python:ubuntu
 
 WORKDIR /app
 
-
-RUN apk update \
-    && apk add g++ \
-    && apk add --virtual build-deps gcc python3-dev musl-dev \
-    && apk add --no-cache mariadb-dev\
-    && apk del build-deps
-RUN apk add gcc musl-dev mariadb-connector-c-dev
 
 
 COPY requirements.txt requirements.txt
