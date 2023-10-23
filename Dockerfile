@@ -1,4 +1,4 @@
-FROM python:ubuntu
+FROM python
 
 WORKDIR /app
 
