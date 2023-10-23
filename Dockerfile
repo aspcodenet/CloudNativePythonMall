@@ -4,6 +4,7 @@ WORKDIR /app
 
 
 RUN apk update \
+    && apk add g++ \
     && apk add --virtual build-deps gcc python3-dev musl-dev \
     && apk add --no-cache mariadb-dev\
     && apk del build-deps
