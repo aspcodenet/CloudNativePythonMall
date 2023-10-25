@@ -21,9 +21,6 @@ phases:
     commands:
   build:
     commands:
-      - docker build -t systementor/testimage .
-      - docker save -o testimage.tar systementor/testimage
-artifacts:
-  files:
-    - 'testimage.tar'
-  name: testimage_${GOOS}_${GOARCH}_$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - docker build -t git.systementor.se/yacloud/stefanpython .
+      - docker login -u yacloud -p yacloud1 https://git.systementor.se
+      - docker push git.systementor.se/yacloud/stefanpython 
